@@ -1,0 +1,57 @@
+Q1. Two Sum :
+
+
+import java.util.*;
+
+class Solution 
+{
+    public int[] twoSum(int[] nums, int target) 
+    {
+        Map<Integer, Integer> numMap = new HashMap<>();
+
+        for (int i = 0; i < nums.length; i++) {
+            int complement = target - nums[i];
+
+            if (numMap.containsKey(complement)) {
+                // Found the pair
+                return new int[]{numMap.get(complement), i};
+            }
+
+            // Save the current number and its index in the map
+            numMap.put(nums[i], i);
+        }
+
+        // No solution found
+        return new int[]{-1, -1};
+    }
+
+    public static void main(String[] args) 
+    {
+        Solution solution = new Solution();
+        Scanner sc = new Scanner(System.in);
+
+        // Read the size of the array
+        System.out.print("Enter the size of the array: ");
+        int size = sc.nextInt();
+
+        // Create an array of the given size
+        int[] numsArray = new int[size];
+
+        // Read the array elements
+        System.out.println("Enter the elements of the array:");
+        for (int i = 0; i < size; i++)
+        {
+            numsArray[i] = sc.nextInt();
+        }
+
+        // Read the target value
+        System.out.print("Enter the target value: ");
+        int targetValue = sc.nextInt();
+
+        // Call the twoSum method with user input
+        int[] result = solution.twoSum(numsArray, targetValue);
+
+        // Print the result
+        System.out.println("Result: " + Arrays.toString(result));
+    }
+}
