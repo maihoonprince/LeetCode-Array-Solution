@@ -1,0 +1,25 @@
+Q3. Convert Sorted Array to Binary Search Tree :
+108
+
+
+
+class Solution {
+    private int[] nums; // Declare nums as an instance variable
+    
+    public TreeNode sortedArrayToBST(int[] nums) {
+        this.nums = nums; // Assign the input nums to the instance variable
+        return buildBST(0, nums.length - 1);
+    }
+    
+    private TreeNode buildBST(int s, int e){
+        if(s > e) return null;
+        int mid = (s + e) / 2;
+
+        TreeNode cur = new TreeNode(nums[mid]); // Use instance variable nums
+
+        cur.left = buildBST(s, mid - 1);
+        cur.right = buildBST(mid + 1, e);
+
+        return cur;
+    }
+}
